@@ -1,25 +1,23 @@
 import logo from './logo.svg';
+import React,{useState} from "react";
 import './App.css';
+import Login from "./components/Login";
+import MoviesTable from "./components/MoviesTable";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [authToken, setAuthToken] = useState(null);
+
+    return (
+        <div className="App">
+
+            {!authToken ? (
+                <Login setAuthToken={setAuthToken} />
+            ) : (
+                <MoviesTable authToken={authToken} />
+            )}
+            
+        </div>
+    );
 }
 
 export default App;
